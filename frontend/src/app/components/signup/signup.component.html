@@ -1,0 +1,38 @@
+<form [formGroup]="signupForm" (ngSubmit)="signup()" novalidate>
+    <h1>Register Employee</h1>
+    <div class="form-group">
+      <label>Employee's Id</label>
+      <input type="text" formControlName="empId" class="form-control" placeholder="Employee's Id">
+    </div>
+    <div class="form-group">
+     <label>Employee's Name</label>
+     <input type="text" formControlName="empName" class="form-control" placeholder="Employee's Name">
+    </div>
+    <div class="form-group">
+      <label>Employee's Address</label>
+      <input type="text" formControlName="empAddress" class="form-control" placeholder="Employee's Adress">
+    </div>
+    <div class="form-group">
+      <label>Employee's Email</label>
+      <input type="text" formControlName="empEmail" class="form-control" placeholder="Employee's Email">
+    </div>
+    <div class="form-group">
+      <label>Employee's Photo</label>
+      <input type="text" formControlName="empPhoto" class="form-control" placeholder="Employee's Photo's Link">
+    </div>
+    <div class="form-group">
+      <label>Employee's Branch</label>
+      <input type="text" formControlName="empBranchId" class="form-control" placeholder="Employee's Branch Id">
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" formControlName="empPassword" class="form-control" placeholder="Password">
+    </div>
+    <button
+      class="btn btn-success"
+      [disabled]="!signupForm.valid"
+      type="submit"
+    >
+      <span>Sign up</span>
+    </button>
+  </form>
