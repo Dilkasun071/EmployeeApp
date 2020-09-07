@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div [class.loading]="loading$ | async" id="employee-list" *ngIf="!(error$ | async); else error">
+        <div id="list">
+          <h2 class="text-center">Employees' Details</h2>
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Employee's Photo</th>
+                <th scope="col">Employee's Id</th>
+                <th scope="col">Employee's Name</th>
+                <th scope="col">Employee's Email</th>
+                <th scope="col">Branch Name</th>
+                <th scope="col">Bank Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let employing of employeeDetails | async">
+                <td *ngIf="!isAuthenticated"><img [src]="employing.emp_photo" style="width: 30px; height: 30px;"/></td>
+                <td *ngIf="!isAuthenticated">{{employing.emp_id}}</td>
+                <td *ngIf="!isAuthenticated">{{employing.emp_name}}</td>
+                <td *ngIf="!isAuthenticated">{{employing.emp_email}}</td>
+                <td *ngIf="!isAuthenticated">{{employing.branch_name}}</td>
+                <td *ngIf="!isAuthenticated">{{employing.bank_name}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <ng-template #noItems>
+            <ul>
+              <li style="max-width: 250px; margin: 0 auto">
+                No items found.
+              </li>
+            </ul>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #error>
+      <h2>{{ (error$ | async)?.message }}</h2>
+    </ng-template>
+  </div>
+</div>

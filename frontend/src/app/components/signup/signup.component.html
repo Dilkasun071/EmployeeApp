@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12" [class.loading]="loading$ | async" id="branch-list" *ngIf="!(error$ | async);">
+
+      <form [formGroup]="signupForm" (ngSubmit)="signup()" novalidate>
+        <h1>Register Employee</h1>
+        <div class="form-group">
+          <label>Employee's Id</label>
+          <input type="number" formControlName="empId" class="form-control" placeholder="Employee's Id"
+            [ngClass]="{'is-invalid': signupForm.get('empId').touched && signupForm.get('empId').invalid}">
+          <div *ngIf="signupForm.get('empId').touched && signupForm.get('empId').invalid">
+            <span class="badge badge-danger">Please input valid id!<br></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Employee's Name</label>
+          <input type="text" formControlName="empName" class="form-control" placeholder="Employee's Name"
+            [ngClass]="{'is-invalid': signupForm.get('empName').touched && signupForm.get('empName').invalid}">
+          <div *ngIf="signupForm.get('empName').touched && signupForm.get('empName').invalid">
+            <span class="badge badge-danger">Please input valid name!<br></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Employee's Address</label>
+          <input type="text" formControlName="empAddress" class="form-control" placeholder="Employee's Adress"
+            [ngClass]="{'is-invalid': signupForm.get('empAddress').touched && signupForm.get('empAddress').invalid}">
+          <div *ngIf="signupForm.get('empAddress').touched && signupForm.get('empAddress').invalid">
+            <span class="badge badge-danger">Please input valid address!<br></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Employee's Email</label>
+          <input type="text" formControlName="empEmail" class="form-control" placeholder="Employee's Email"
+            [ngClass]="{'is-invalid': signupForm.get('empEmail').touched && signupForm.get('empEmail').invalid}">
+          <div *ngIf="signupForm.get('empEmail').touched && signupForm.get('empEmail').invalid">
+            <span class="badge badge-danger">Please input valid email!<br></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Employee's Photo</label>
+          <input type="text" formControlName="empPhoto" class="form-control" placeholder="Employee's Photo's Link"
+            [ngClass]="{'is-invalid': signupForm.get('empPhoto').touched && signupForm.get('empPhoto').invalid}">
+          <div *ngIf="signupForm.get('empPhoto').touched && signupForm.get('empPhoto').invalid">
+            <span class="badge badge-danger">Please input valid link!<br></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Employee's Branch Id</label>
+          <select class="form-control" formControlName="empBranchId" [ngClass]="{'is-invalid': signupForm.get('empPhoto').touched && signupForm.get('empPhoto').invalid}">
+            <option *ngFor="let branch of branchId | async" [ngValue]="branch.branch_id">{{branch.branch_id}}</option>
+          </select>
+          <div *ngIf="signupForm.get('empBranchId').touched && signupForm.get('empBranchId').invalid">
+            <span class="badge badge-danger">Please select branch id!<br></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" formControlName="empPassword" class="form-control" placeholder="Password"
+            [ngClass]="{'is-invalid': signupForm.get('empPassword').touched && signupForm.get('empPassword').invalid}">
+        </div>
+        <div class="form-group">
+          <label>Repeat Password</label>
+          <input type="password" class="form-control" id="empComPassword" formControlName="empComPassword">
+          <div *ngIf="signupForm.get('empComPassword').touched && signupForm.get('empComPassword').invalid">
+          </div>
+          <div *ngIf="signupForm.get('empComPassword').valid && signupForm.get('empComPassword').value != signupForm.get('empPassword').value" class="text-danger">
+            The passwords entered do not match
+          </div>
+        </div>
+        <button class="btn btn-success" [disabled]="!signupForm.valid" type="submit">
+          <span>Sign up</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
